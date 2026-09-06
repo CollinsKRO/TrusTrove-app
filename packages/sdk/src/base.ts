@@ -83,7 +83,7 @@ export interface SimulationResult {
   /** Name of the contract method being simulated */
   functionName: string;
   /** Decoded return value from the simulation, or undefined if none */
-  expectedResult: any;
+  expectedResult: unknown;
   /** Number of ledger entries accessed (read-only + read-write) */
   footprintSize: number;
 }
@@ -221,7 +221,7 @@ export class BaseContractClient {
       : 0;
 
     const retval = sim.result?.retval;
-    let expectedResult: any = undefined;
+    let expectedResult: unknown = undefined;
     if (retval) {
       try {
         expectedResult = scValToNative(retval);
